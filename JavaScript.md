@@ -517,3 +517,65 @@ console.log(!{ value: 1 });
   }
   // hoisting이 안 일어난 것처럼 보이나, hoisting이 일어났기 때문에 참조 에러가 발생한 것이다.
   ```
+
+##### Prototype 객체
+
+- Prototype은 생성자 함수에 의해 생성된 각각의 객체에 공유 프로퍼티를 제공하기 위해 사용한다.
+
+```javascript
+var student = {
+  name: "Lee",
+  score: 90,
+};
+// student에는 hasOwnProperty 메소드가 없지만 아래 구문은 동작한다.
+// _proto_ 즉, Prototype에 hasOwnProperty 라는 메소드가 있기 때문
+console.log(student.hasOwnProperty("name")); // true
+```
+
+- 자바스크립트의 모든 객체는 [[Prototype]]이라는 인터널 슬롯을 가진다.
+- [[Prototype]]의 값은 Prototype 객체이며 ** proto ** 프로퍼티로 접근할 수 있으며, 내부적으로 Object.getPrototypeOf가 호출되어 프로토 타입 객체를 반환한다.
+
+##### Strict 모드
+
+- 암묵적 전역변수를 허용하지 않는다.
+- 변수, 함수, 매개변수의 삭제를 허용하지 않는다.
+- 중복된 파라미터 이름을 허용하지 않는다.
+- 생성자 함수가 아닌 일반 함수에서는 this에 undefined가 호출된다.
+
+##### this
+
+- 자바스크립트의 함수는 호출될 때, 매개변수로 전달되는 인자값 외에, arguments 객체와 this를 암묵적으로 전달받는다.
+
+- Java에서 this는 인스턴스 자신을 가리키는 참조변수이다.
+
+- JavaScript는 해당 함수 호출 방식에 따라 this에 바인딩 되는 객체가 달라진다.
+
+- 함수 호출 방식
+
+  - 함수 호출
+  - 메소드 호출
+  - 생성자 함수 호출
+  - apply / call / bind 호출
+
+  ```javascript
+  var foo = function () {
+    console.dir(this);
+  };
+
+  // 1. 함수 호출
+  foo(); // window
+  // window.foo();
+
+  // 2. 메소드 호출
+  var obj = { foo: foo };
+  obj.foo(); // obj
+
+  // 3. 생성자 함수 호출
+  var instance = new foo(); // instance
+
+  // 4. apply/call/bind 호출
+  var bar = { name: "bar" };
+  foo.call(bar); // bar
+  foo.apply(bar); // bar
+  foo.bind(bar)(); // bar
+  ```
