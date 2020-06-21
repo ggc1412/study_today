@@ -1,0 +1,11 @@
+- flex-direction: column;
+- overflow
+  - auto / hidden
+  - white-space - 숨길 때 줄 바꿈 등을 어떻게 할거냐
+  - text-overflow - text관련하여 처리 방법 설정 가능
+- rgba / opacity 차이점 - 비상속, 상속
+- styled-components 내에서 & 사용
+- img 태그 가운데 정렬
+  - inline-block이므로 text-align 사용가능
+  - display:block으로 하여 margin 줄 수 있음
+  - flex로 가운데 정렬 가능
