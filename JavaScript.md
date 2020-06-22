@@ -642,3 +642,21 @@ console.log(student.hasOwnProperty("name")); // true
     - HTTP 헤더에 추가적으로 정보를 추가하여 브라우저와 서버가 서로 통신해야한다는 사실을 알게하는 방법
     - 서버에 HTTP 헤더를 설정해줘야한다.
     - CORS 패키지를 사용하면 간단하게 구현할 수 있다.
+
+### JavaScript 배열은 진짜 배열이 아니다.
+
+- 배열은 연속적인 메모리 로케이션의 묶음을 사용한다.
+- 따라서 특정 값을 찾기가 용이하다.
+  ( 어느 메모리 블록에 저장되어있는지 찾기가 쉬움 )
+- 반면, JavaScript의 배열은 hash-map 이다.
+  Linked List를 통해서 구현된다. ( ??? )
+- 특정 값을 찾으려면 메모리 시작점부터 원하는 값까지 탐색해 나가야 한다.
+
+### JavaScript 배열의 진화
+
+- 최근 JavaScript 엔진의 경우, 모든 요소가 동일한 타입을 가진 배열의 경우, 연속적으로 메모리를 할당한다.
+- ES6 이후, Typed Array가 추가되었으며, 이를 통해 ArrayBuffer를 사용할 수 있게 되었다.
+- ArrayBuffer는 contiguous 메모리 블록을 제공하고, 이것을 마음대로 다룰 수 있게 해준다.
+- ArrayBuffer를 사용한 Typed Array는 기존 JS의 Array보다 몇 배나 월등한 처리 속도를 가진다.
+
+http://voidcanvas.com/javascript-array-evolution-performance/
