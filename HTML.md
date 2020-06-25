@@ -125,30 +125,34 @@
   - html 문서 안에 또 다른 html 문서를 넣을 때 사용
   - Youtube 같은 영상을 넣을 때 사용한다.
 
-- abbr
+* abbr
+
   - abbreviation / 약어, 준말
   - title 속성을 통해 마우스 오버시 설명이 나오게 할 수 있다.
-- address
+
+* address
+
   - 연락망이라는 것을 표시하는 태그
   - 주소, URL, email, 전화번호, SNS 등
-- pre 태그, code 태그
+
+* pre 태그, code 태그
 
   - preformatted / 텍스트를 미리 지정한대로 출력하도록 하는 태그
   - code의 일부분을 나타날 쓰는 태그
   - 들여쓰기를 표현하기 위해 pre 태그와 같이 쓰는 경우가 많다.
 
-- title
+* title
 
   - 검색최적화를 위해 중요한 태그
   - 키워드 단순 나열은 비추
   - 페이지마다 타이틀이 다르게
 
-- link / script
+* link / script
 
   - link는 비동기로 처리 / script는 동기로 처리
   - 그래서 script는 마지막에 넣는 것이 좋다.
 
-- meta
+* meta
 
   - name / 메타 데이터의 종류
   - content / 메타 데이터의 값
@@ -157,49 +161,58 @@
     - initial-scale / 처음 보여줄 때 배율
   - 그 외에, author / description / keywords
 
-- html escape code / 헷갈릴 수 있는 문자를 대신 사용
+* html escape code / 헷갈릴 수 있는 문자를 대신 사용
 
-- img 태그가 마크업상으로 아무의미가 없다고 느껴질 때는 img 태그 대신에 css 로 처리할 수도 있다.
+* img 태그가 마크업상으로 아무의미가 없다고 느껴질 때는 img 태그 대신에 css 로 처리할 수도 있다.
 
-- img 태그가 text 정보도 가져야 할 때(ex. 타이틀 로고 이미지) alt 속성으로 text도 함께 표현할 수 있다. 마크업상으로 브라우저가 img의 의미를 잘 파악할 수 있음.
+* img 태그가 text 정보도 가져야 할 때(ex. 타이틀 로고 이미지) alt 속성으로 text도 함께 표현할 수 있다. 마크업상으로 브라우저가 img의 의미를 잘 파악할 수 있음.
 
-- WAI-ARIA / 인터넷 접근성을 도와주는 API
+* WAI-ARIA / 인터넷 접근성을 도와주는 API
 
   - aria-label
     - aria라는 스크린 리더로 읽었을 때는 다른 의미로 읽을 거야
     - 눈으로 보이는 것과는 다르게 읽어줘
   - aria-hidden="true" / 굳이 이거 읽을 필요 없어
+  - sr-only 같은 이름의 클래스를 설정하여, 눈에는 보이지 않지만 스크린 리더는 읽도록 처리하는 정보를 넣을 수도 있다.
 
-- 중요도와 흐름에 따라 html 태그 순서를 배치할 수 있다. 추후 CSS로 보여지는 순서 재정렬
+* 중요도와 흐름에 따라 html 태그 순서를 배치할 수 있다. 추후 CSS로 보여지는 순서 재정렬
 
   - flex-direction: row-reverse;
 
-flex
+* flex
 
-- flex-grow
-  - flex-item 요소가 flex-container 요소 내부에서 할당 가능한 공간의 정도를 선언
-  - 보통 flex-grow를 사용할 땐, flex-shrink, flex-basis 속성을 함께 사용
-  - 일반적으로 모든 값이 설정되었음을 보장하기 위해 flex 속성으로 축약형을 사용
-- flex-shrink
-  - shrink / 수축
-  - flex-item 요소의 크기가 flex-container 요소의 크기보다 클 때 사용
-  - 설정된 숫자의 값에 따라 flex-item 요소의 크기가 **축소**
-- flex-basis
-  - flex-item의 초기 크기를 지정
-- flex 속성 값이 한 개일 경우
-  - number를 지정하면 flex-grow
-  - length 또는 percentage를 지정하면 flex-basis
-- flex 속성 값이 두 개일 경우
-  - 첫번째 값은 number여야 하며, flex-grow가 됨
-  - 두번째 값은 number일 경우, flex-shrink
-  - length, percentage, auto를 지정하면 flex-basis
-- flex 속성 값이 세 개일 경우
-  1. flex-grow의 number
-  2. flex-shrink의 number
-  3. flex-basis의 length, percentage 또는 auto
-- https://developer.mozilla.org/ko/docs/Web/CSS/flex
+  - flex-grow
+    - flex-item 요소가 flex-container 요소 내부에서 할당 가능한 공간의 정도를 선언
+    - 보통 flex-grow를 사용할 땐, flex-shrink, flex-basis 속성을 함께 사용
+    - 일반적으로 모든 값이 설정되었음을 보장하기 위해 flex 속성으로 축약형을 사용
+  - flex-shrink
+    - shrink / 수축
+    - flex-item 요소의 크기가 flex-container 요소의 크기보다 클 때 사용
+    - 설정된 숫자의 값에 따라 flex-item 요소의 크기가 **축소**
+  - flex-basis
+    - flex-item의 초기 크기를 지정
+  - flex 속성 값이 한 개일 경우
+    - number를 지정하면 flex-grow
+    - length 또는 percentage를 지정하면 flex-basis
+  - flex 속성 값이 두 개일 경우
+    - 첫번째 값은 number여야 하며, flex-grow가 됨
+    - 두번째 값은 number일 경우, flex-shrink
+    - length, percentage, auto를 지정하면 flex-basis
+  - flex 속성 값이 세 개일 경우
+    1. flex-grow의 number
+    2. flex-shrink의 number
+    3. flex-basis의 length, percentage 또는 auto
+  - https://developer.mozilla.org/ko/docs/Web/CSS/flex
 
-- 프론트 엔드 엘리먼트들
+* Sectioning Element
+
+  - 구조적인 개요를 짜기 위한 요소
+  - section, article, nav, aside
+  - 공통
+    - Sectioning elements에는 항상 제목요소 h 태그가 필요하다.
+
+* 프론트 엔드 엘리먼트들
 
   - Feature Box / 상품 설명 같이 하나의 박스 형태로 존재하는 요소
   - Breadcrumb&Pagination / 페이지 위치 표시 요소 / 페이지 번호 표시 요소
+  - Drop Down
