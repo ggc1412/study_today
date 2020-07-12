@@ -660,3 +660,36 @@ console.log(student.hasOwnProperty("name")); // true
 - ArrayBuffer를 사용한 Typed Array는 기존 JS의 Array보다 몇 배나 월등한 처리 속도를 가진다.
 
 http://voidcanvas.com/javascript-array-evolution-performance/
+
+#### ...연산자
+
+spred와 rest 두가지로 쓰인다.
+파라미터로 쓰일 경우 rest 연산자로 파라미터들을 하나의 values 배열로 묶는다.
+( 일반적으로 쓰는 args는 유사 배열 객체이다. 그래서 array에게 기대되는 foreach, map 등의 메서드가 없다. )
+화살표 함수에서 유용하게 사용된다.
+( 화살표 함수에서는 args 객체를 쓸 수 없다.)
+
+Iterable한 객체에 사용하면 spread의 역할을 한다.
+객체를 풀어 놓을 때 사용한다.
+
+#### Arrow Function
+
+함수를 축약하여 사용하는 것이다.
+함수를 값처럼 사용할 수 있다.
+화살표 함수에서 this는 화살표 함수 밖의 this와 같다.
+
+```javascript
+const exponent = (exp) => (base) => base ** exp;
+// exp를 받아서 base를 exp 만큼 거듭 제곱한다.
+// 즉, 화살표 함수로 함수값을 가지고 있는 객체를 만들 수도 있는 것이다.
+
+const square = exponent(2);
+const cube = exponent(3);
+const powerOf4 = exponent(4);
+
+square(5); //25
+cube(5); //125
+powerOf4(5); //625
+
+// 만일 여기서 this를 쓰면 전역을 가르킨다.
+```
