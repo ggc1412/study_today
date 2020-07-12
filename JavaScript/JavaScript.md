@@ -693,3 +693,51 @@ powerOf4(5); //625
 
 // 만일 여기서 this를 쓰면 전역을 가르킨다.
 ```
+
+매번 함수를 실행할 때마다, excution context가 생성된다.
+그리고 함수를 어떻게 실행하냐에 따라서 this가 바뀐다.
+일반 function의 경우, 의도와 달리 전역을 가리키는 경우가 발생하여 혼돈을 줄 수 있기 때문에 arrow function을 주로 많이 쓰게 된다.
+
+```javascript
+const util = {
+    threshold: 5,
+    filter: function (...numbers) {
+        return numbers.filter(n => (n < this.threshold) ? true : false);
+    }
+    a: function() {
+        console.log(this);
+    }
+}
+
+util.filter(2, 5, 10); //2
+let b = util
+// 여기서는 util을 통해서 filter를 실행하기 때문에 filter안에서 this는 util이 된다.
+// filter의 nubers.filter 함수는 콜백 함수처럼 사용되었기 때문에 만일 this.threshold의 this가 일반 function으로 선언되었을 경우에는 전역을 가리킨다.
+// 여기서는 arrow function으로 사용했기 때문에 상위 block인 filter의 this와 동일한 this를 가리킨다. 즉, util을 가라킨다.
+```
+
+그 외에도, Component도 arrow function으로 정의할 수 있을 뿐만 아니라, 메서드도 축약하여 표현할 수 있다. 이렇듯, JavaScript가 발전해가면서 표현을 축약하고, 명확하지 않은 표현들을 명확하게 표현하도록 바뀌어가고 있다.
+
+```javascript
+filter: (...numbers) =>
+  numbers.filter((n) => (n < this.threshold ? true : false));
+```
+
+##### this에 대한 추가
+
+```javascript
+var obj = {
+  a: () => {
+    // this => global
+    console.log(this);
+  },
+  b: function () {
+    // this => obj
+    console.log(this);
+  },
+};
+let c = obj.b;
+c(); // this => global
+```
+
+이처럼 function 키워드를 통해서 만들어지는 경우, 함수를 어떻게 호출하느냐에 따라 this가 결정된다. 하지만 arrow 함수는 호출과 관계없이 arrow 함수가 정의된 상태에 따라 this가 결정된다. ( lexical 혹은 literal 하다. )
