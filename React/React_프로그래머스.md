@@ -20,3 +20,26 @@ prettier와 함께 쓰기 위해, eslint-config-prettier를 설치하여 충돌�
 ```json
 "extends":["eslint:recommended", "prettier"]
 ```
+
+##### Parcel 번들러 추가
+
+import 등 모듈 시스템이나 번들링을 위해서 번들러가 필요하다.
+
+```shell
+yarn add -D parcel-bundler
+```
+
+Parcel 번들러에게 시작지점을 알려주어서 번들링할 수 있다.
+
+```json
+"scripts": {
+ "dev":"parcel index.html",
+ "build":"parcel build index.html"
+}
+```
+
+build의 경우, dist라는 폴더를 만들어서 번들링된 파일들을 저장해준다.
+
+#### React 설치
+
+일반 eslint는 React 코드를 이해 못하므로 React용 eslint를 따로 설치해야 한다.
