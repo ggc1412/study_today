@@ -782,3 +782,7 @@ app();
 하나의 파일이 하나의 모듈이고 하나의 모듈은 하나의 default를 가진다. 이때 동적할당은 안된다.
 
 named export의 경우 하나의 모듈이 여러 export가 가능하다.
+
+##### ajax
+
+AJAX(AsynchronousJavaScriptAndXML)는 비동기 자바스크립트를 뜻한다. 이제는 비동기적 자바스크립트 동작을 하는 기술들을 통들어서도 AJAX라고 부른다. AJAX하면 예전에는 XMLHttpRequest API를 이용하는 것이 일반적이었으며, 그리고 불편함을 느낀 사람들이 jQuery를 통해 AJAX를 구현하기 시작했고 그 이후로 Fetch API가 ES2015 표준으로 등장하면서 이제는 일반적으로 Fetch API를 통해 구현하는 것이 일반적이 되었다.
