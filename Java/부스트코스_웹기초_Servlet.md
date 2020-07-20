@@ -78,3 +78,42 @@ public class Tenservlet extends HttpServlet { ... }
 6. **destroy()** 는 웹 어플리케이션이 갱신되거나, WAS가 종료될 때 호출된다.
 
 [![img](https://cphinf.pstatic.net/mooc/20180124_22/1516782982944xjogH_PNG/1_5_3_ServletLifcycle.PNG?type=w760)](https://www.edwith.org/boostcourse-web/lecture/16688/#)
+
+###### service(request, response) 메서드
+
+HttpServlet의 service 메서드는 **템플릿 메서드 패턴으로 구현**
+
+- 클라이언트의 요청이 **GET**인 경우, 자신이 가지고 있는 **doGet(requrest, response)** 메서드를 호출
+- 클라이언트의 요청이 **POST**인 경우, 자신이 가지고 있는 **doPost(request, response)** 메서드를 호출
+- 부모 클래스인 HttpServlet에서 service 클래스를 구현해놓았고, 이 부분을 자식 클래스(servlet 클래스)에서 따로 구현하지 않으면, 부보 클래스의 service 클래스가 실행이 된다.
+- HttpServlet의 service 클래스는 요청 방식에 따라 doGet, doPost가 실행이 되도록 구현이 되어있다.
+- 즉, service는 이미 세분화 되어서, service만 실행되는 것이 아니라 요청에 따라 이미 정해진 템플릿 메서드들이 실행된다.
+
+##### HttpServletRequst, HttpServletResponse
+
+[![img](https://cphinf.pstatic.net/mooc/20180124_79/15167843899250uB2H_PNG/1_5_4_request_response.PNG?type=w760) ](https://www.edwith.org/boostcourse-web/lecture/16689/#)
+
+WAS는 웹 브라우저로부터 Servlet 요청을 받으면,
+
+- 요청할 때 가지고 있는 정보를 **HttpServletRequest **객체를 생성하여 저장
+- 웹 브라우저에게 응답을 보낼 때 사용하기 위하여 **HttpServletResponse** 객체를 생성
+
+- 생성된 HttpServletRequest, HttpServletResponse 객체를 Servlet의 **service()에 파라미터로 전달**
+
+###### HttpServletRequest
+
+- http 프로토콜의 request 정보를 servlet에게 전달하기 위한 목적으로 사용
+- 헤더 정보, 파라미터, 쿠키, URI, URL 등의 정보를 읽어들이는 메소드를 가지고 있다.
+- Body의 Stream을 읽어들이는 메소드를 가지고 있다.
+
+###### HttpServletResponse
+
+- WAS는 어떤 클라이언트가 요청을 보냈는지 알고 있고, 해당 클라이언트에게 응답을 보내기 위한 HttpServletResponse 객체를 생성하여 Servlet에게 전달
+- Servlet은 해당 객체를 이용하여 content type, 응답코드, 응답 메세지 등을 전송
+
+###### HttpServletRequest 객체가 가지고 있는 값
+
+- uri : 도메인과 포트번호 이하의 값
+- url: 요청주소 전체
+- contentPath: 웹 어플리케이션과 연결된 이름
+- remoteAddr: 클라이언트의 ip 주소 값
