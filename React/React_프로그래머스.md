@@ -146,3 +146,109 @@ JavaScript 안에 css를 포함(css in JS)하여서 한번에 컴포넌트화하
 ##### propTypes
 
 컴포넌트 안에서 prop들의 type을 지정한다. 모든 컴포넌트들에 대해서 굳이 만들 필요는 없고, 재사용되는 컴포넌트들에 대해서 쓰는 것도 권장된다. 아예 typeScript를 쓰는 것도 좋다.
+
+##### input 태그의 값 변경
+
+input 태그에서 값이 변경되면 그 값은 DOM의 값이다. react와는 별개의 값이기 때문에 state에 input 태그의 값을 연결해주는 과정이 필요하다.
+
+그 결과
+
+1. input 태그에 값 입력.
+2. state 값이 변경됨.
+3. React element 객체가 리턴됨.
+4. element 객체로 렌더링된 Virtual DOM이 실제 DOM과 다른 부분을 확인하여, 바뀐 것만 다시 rendering한다.
+
+이렇게 제어되는 Component를 controlled component라고 한다.
+
+사실 state와 연결하지 않아도 input 태그 안에 값을 입력하면 값이 변하기는 한다. 하지만 이건 React가 작동하는 것이 아니라, 실제 DOM이 변경되는 것이다.
+
+###### uncontrolled component
+
+controlled component는 state와 연결되어 state 값에 따라 변경이 된다. 하지만 uncontrolled component는 state 값에 따르지 않기 때문에 직접적으로 값을 변경해줘야 한다.
+
+```react
+// addBtn을 눌렀을 때, input 값이 비워지길 원한다면 uncontrolled component는 ref로 input 태그와 연결하여 직접 값을 비워줘야 한다.
+handleAddBtnClicked = {
+    this.input.current.value='';
+}
+render() {
+    return(
+    	<input ref={this.input} />
+    )
+}
+```
+
+controlled의 경우, 값이 변할 때마다 render가 되니 문제가 될 수 있지 않냐고 생각할 수 있는데, component 안에 component가 있어서 자식 component까지 계속 변하는 경우라면 문제가 될 수 있겠지만 위와 같이 혼자만 변하는 경우에는 controlled로 해도 문제가 되지 않는다.
+
+rendering하는 경우에도 바뀌는 부분만 rendering 되기 때문에 왠만하면 controlled로 쓰는 것이 권장되며, uncontrolled를 쓸 경우 연결하는 부분에 대해 잘 알고 쓰는 것이 필요하다.
+
+##### Pure Component
+
+예를 들어, Todo 컴포넌트가 있다고할 때, 새로운 할 일이 추가되면 새로운 할일만 rendering되는 것이 아니라 전체 할 일이 rendering되어서 Todo 컴포넌트가 여러번 호출되는 경우가 발생한다. 그럴 경우 shouldComponentUpdate를 통해 라이프 사이클 관리를 하여 새로운 것만 렌더링 되도록 할 수도 있고, Pure Component를 지정할 수 도 있다.
+
+Component가 아니라 Pure Component를 상속 받으면, 이 Component는 새로 변화된 값일 경우에만 rendering 된다. (component는 props를 넘겨받는데 이 props들이 변경된 값일 경우에만 호출이 된다.)
+
+```react
+// Component가 아닌 PureComponent를 상속받는다.
+class Todo extends PureComponent{
+    /*...*/
+}
+```
+
+주의할 점은 새로운 값이라는 것을 shallow compare 하기 때문에 만약에 props로 { id, done, contents } 처럼 풀어서 보내주는 것이 아니라 { todo }로 전달하고, todo 객체 안에 있는 값들(id, don, contents)를 변경하면 변화된 것을 인지하지 못해서 rendering되지 않는다. 그래서 만일 todo로 넘겼는데 변화를 인지하게 하고 싶다면 그냥 todo를 전달하는 것이 아니라 새로운 레퍼런스 주소를 가지는 todo 객체를 다시 만들어서 보내줘야 변화를 인지하고 리렌더링 하게 된다.
+
+###### 함수형 Component의 경우
+
+함수형의 경우, class를 상속받는 것이 아니다보니 PureComponent를 상속받아 사용할 수가 없다. 그래서 memo라는 것을 사용한다.
+
+```react
+export default memo(Todo);
+```
+
+위와 같이 Todo를 memo를 사용하면 Higher-order Component (HOC)로 만들어준다. 그러면 PureComponent 처럼 props가 바뀔때만 렌더링된다.
+
+memo는 component를 파라미터로 받아서 기능이 확장된 component로 반환해준다.
+
+하지만. hooks가 나오면서 새로운 hooks를 만들어서 사용한다.
+
+##### styled-component & styled-jsx
+
+css in JS 스타일이다. styled-jsx는 vue 처럼 컴포넌트의 style을 직접 집어 넣어서 사용할 수 있다.
+
+```react
+export default () => (
+  <div>
+    <p>only this paragraph will get the style :)</p>
+
+    { /* you can include <Component />s here that include
+         other <p>s that don't get unexpected styles! */ }
+
+    <style jsx>{`
+      p {
+        color: red;
+      }
+    `}</style>
+  </div>
+)
+```
+
+위의 경우 global로 선언 할 수도 있다.
+
+```react
+    <style jsx global>{`
+      p {
+        color: red;
+      }
+    `}</style>
+```
+
+컴포넌트 별로 나눠 넣으면 class명이 같아도 넣어진 component에서만 작동하기 때문에 scope하게 나누는데 편리한 장점이 있다.
+
+사용하기 위해서는 babel에서 styled-jsx를 위한 설정을 추가해주어야한다.
+
+```json
+{
+  "presets": ["@babel/preset-react", "@babel/preset-env"],
+  "plugins": ["styled-jsx/babel"]
+}
+```
