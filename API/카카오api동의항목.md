@@ -1,16 +1,16 @@
-https://developers.kakao.com/docs/latest/ko/getting-started/app#agreement
+# 카카오 로그인 동의 항목
 
-**카카오 동의 항목**
+<https://developers.kakao.com/docs/latest/ko/getting-started/app#agreement>
 
-프로필 정보 (닉네임 / 프로필 사진)
+## 1. 카카오 필수 동의 항목
 
+- 프로필 정보 (닉네임 / 프로필 사진)
 
+## 2. 검수 필요
 
-**검수 필요**
+- 카카오 계정(이메일)
 
-- 카카오 계정(이메일) 
-
-- 성별 
+- 성별
 
 - 연령대
 
@@ -18,17 +18,17 @@ https://developers.kakao.com/docs/latest/ko/getting-started/app#agreement
 
 - 생일
 
-**비즈앱 신청시 ( 검수 필요 )**
+## 3. 비즈앱 신청시 ( 검수 필요 )
 
 - 출생연도
 
 - 카카오계정(전화번호)
+
 - CI(연계정보)
+
 - 배송지정보(수령인명, 배송지 주소, 전화번호)
 
-
-
-**동의 단계**
+## 4. 동의 단계
 
 - 필수동의
 
@@ -38,10 +38,10 @@ https://developers.kakao.com/docs/latest/ko/getting-started/app#agreement
 
 - 사용안함
 
-
-
-**비즈앱 설정**
+## 5. 비즈앱 설정
 
 - 회사명, 앱 아이콘 등록 필요
-- 사업자 
-- https://developers.kakao.com/docs/latest/ko/getting-started/app#biz-app
+
+- 사업자
+
+- <https://developers.kakao.com/docs/latest/ko/getting-started/app#biz-app>

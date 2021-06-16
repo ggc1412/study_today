@@ -1,4 +1,4 @@
-##### synchronized
+# synchronized
 
 ```java
 public class MyHero { 
@@ -55,17 +55,13 @@ public class MyHero {
 
 두개의 thread가 각기 다른 함수를 synchronized 함수를 호출하지만 객체에 lock이 걸리기 때문에 동시에 호출할 수가 없는거죠.
 
-
-
 정리하자면 synchronized 함수는 자신이 포함된 객체에 lock을 겁니다.
 
 따라서 동기화 문제를 해결하는데 가장 간단하고 확실하면서 무식한 방법입니다.
 
 여기서 무식하다 함은 synchronized로 인하여 객체에 포함된 다른 모든 synchronized의 접근 까지 lock이 걸리기 때문입니다.
 
-
-
-##### sychronized block
+## sychronized block
 
 ```java
 Public class SyncBlock2 { 
@@ -129,4 +125,4 @@ Public class SyncBlock2 {
 
 하지만 lock이 필요한건 같은 hashmap을 동시에 접근하는 경우라고 한다면 put1()과 get1(), put2()와 get2()이 각각 lock을 사용하면 좋을것 같습니다.
 
->  https://tourspace.tistory.com/55?category=788398
+> <https://tourspace.tistory.com/55?category=788398>
